@@ -6,13 +6,78 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        html = {},
-        cssls = {},
-        pyright = {},
-        tsserver = {},
-        tailwindcss = {},
+        tailwindcss = {
+          filetypes = {
+            "html",
+            "css",
+            "javascript",
+            "javascriptreact",
+            "typescriptreact",
+            "python"
+          },
+        },
       },
     },
+  },
+  ------------------------------------------------------------------
+  --  type script servers
+  ------------------------------------------------------------------
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lspconfig" },
+    opts = {},
+  },
+
+  ------------------------------------------------------------------
+  --  emmet
+  ------------------------------------------------------------------
+  {
+    "olrtg/nvim-emmet",
+    ft = { "html", "css", "javascriptreact", "typescriptreact" },
+    config = function()
+      vim.keymap.set({ "n", "v" }, "<leader>e", require("nvim-emmet").wrap_with_abbreviation)
+    end,
+  },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lspconfig" },
+    opts = {},
+  },
+  ------------------------------------------------------------------
+  --  tailwindcss tooling
+  ------------------------------------------------------------------
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      document_color = {
+        enabled = true, -- color preview
+      },
+    },
+  },
+  ------------------------------------------------------------------
+  -- Coloring in lazyvim
+  ------------------------------------------------------------------
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      filetypes = { "*", "!lazy" },
+      user_default_options = {
+        tailwind = true,
+      },
+    },
+  },
+
+
+
+
+
+  {
+    "windwp/nvim-ts-autotag",
+    opts = {}
   },
 
   ------------------------------------------------------------------
@@ -31,6 +96,9 @@ return {
         "python",
         "bash",
       },
+      highlight = { enable = true },
+      indent = { enable = true },
+
     },
   },
 
@@ -76,6 +144,9 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
     },
   },
 
@@ -108,16 +179,6 @@ return {
   -- Option B: More control (comment A if you use this)
 
   --
-  ------------------------------------------------------------------
-  -- TERMINAL (useful for dev + AI scripts)
-  ------------------------------------------------------------------
-  {
-    "akinsho/toggleterm.nvim",
-    opts = {
-      size = 12,
-      open_mapping = [[<c-\>]],
-      direction = "horizontal",
-    },
-  },
+
 
 }
