@@ -18,6 +18,18 @@ return {
   },
 
   ------------------------------------------------------------------
+  -- oxocarbon THEME
+  ------------------------------------------------------------------
+
+
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    priority = 1000, -- make sure it loads first
+    config = function()
+    end,
+  },
+
+  ------------------------------------------------------------------
   -- SOLARIZED OSAKA THEME
   ------------------------------------------------------------------
   {
@@ -40,7 +52,8 @@ return {
     "LazyVim/LazyVim",
     opts = function(_, opts)
       -- CHANGE THIS MANUALLY
-      opts.colorscheme = "tokyonight-night"
+      -- opts.colorscheme = "tokyonight-night"
+      opts.colorscheme = "oxocarbon"
       -- opts.colorscheme = "solarized-osaka"
     end,
   },
